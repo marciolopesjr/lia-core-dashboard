@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "deploy": "pnpm build && cp -r dist/* ..",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -13,6 +14,11 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ],
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@types/node": "^24.10.1",
