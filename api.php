@@ -2,6 +2,17 @@
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 
+// Endpoint para Leads do CRM
+if (isset($_GET['action']) && $_GET['action'] === 'leads') {
+    $leadsFile = 'data/leads/propostas_geradas_v2.json';
+    if (file_exists($leadsFile)) {
+        echo file_get_contents($leadsFile);
+    } else {
+        echo json_encode([]);
+    }
+    exit;
+}
+
 // Função para pegar uso de CPU
 function get_cpu_usage() {
     $load = sys_getloadavg();

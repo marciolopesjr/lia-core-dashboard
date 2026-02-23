@@ -13,23 +13,36 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import { BentoCard } from './components/BentoCard';
+import { LeadsModal } from './components/LeadsModal';
 
 export default function App() {
+  const [isLeadsOpen, setIsLeadsOpen] = useState(false);
   const [stats, setStats] = useState({
     cpu: '0%',
-    ram: '12.4GB',
-    disk: '45%',
-    lia_status: 'SISTEMA_OPERANTE',
+    ram: '0%',
+    disk: '0%',
+    lia_status: 'SISTEMA_INICIALIZANDO',
     uptime: '14d 03h 22m'
   });
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setStats(prev => ({
-        ...prev,
-        cpu: `${Math.floor(Math.random() * 5 + 1)}%`,
-      }));
-    }, 3000);
+    const fetchStats = () => {
+      fetch('./api.php')
+        .then(res => res.json())
+        .then(data => {
+          setStats(prev => ({
+            ...prev,
+            cpu: data.metrics.cpu,
+            ram: data.metrics.ram,
+            disk: data.metrics.disk,
+            lia_status: data.lia_status
+          }));
+        })
+        .catch(err => console.error("Error fetching stats:", err));
+    };
+
+    fetchStats();
+    const interval = setInterval(fetchStats, 5000);
 
     return () => clearInterval(interval);
   }, []);
@@ -124,8 +137,13 @@ export default function App() {
           </BentoCard>
 
           {/* Analytics Cards */}
-          <BentoCard title="CRM Leads" icon={<TrendingUp size={14}/>}>
-            <div className="text-6xl font-black text-magenta tracking-tighter">42</div>
+          <BentoCard
+            title="CRM Leads"
+            icon={<TrendingUp size={14}/>}
+            className="group/crm"
+            onClick={() => setIsLeadsOpen(true)}
+          >
+            <div className="text-6xl font-black text-magenta tracking-tighter group-hover/crm:scale-110 transition-transform origin-left duration-500">4</div>
             <p className="text-[0.65rem] text-white/30 uppercase mt-2 font-bold tracking-wider">Regional Leads Hub</p>
           </BentoCard>
 
@@ -159,6 +177,8 @@ export default function App() {
           </BentoCard>
         </div>
       </main>
+
+      <LeadsModal isOpen={isLeadsOpen} onClose={() => setIsLeadsOpen(false)} />
     </div>
   );
 }

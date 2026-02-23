@@ -7,14 +7,17 @@ interface BentoCardProps {
   icon?: React.ReactNode;
   children: React.ReactNode;
   className?: string;
+  onClick?: () => void;
 }
 
-export const BentoCard = ({ title, icon, children, className }: BentoCardProps) => {
+export const BentoCard = ({ title, icon, children, className, onClick }: BentoCardProps) => {
   return (
     <motion.div
       whileHover={{ y: -5, scale: 1.01 }}
+      onClick={onClick}
       className={cn(
         "group relative overflow-hidden rounded-apple border border-white/10 bg-[#0a0a0b]/80 p-8 backdrop-blur-2xl transition-all duration-500 hover:border-magenta/30 hover:bg-[#0a0a0b]/90 hover:shadow-[0_0_40px_rgba(255,0,255,0.1)]",
+        onClick && "cursor-pointer",
         className
       )}
     >

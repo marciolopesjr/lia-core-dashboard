@@ -1,1 +1,19 @@
-nohup: failed to run command 'php': No such file or directory
+[Mon Feb 23 12:22:06 2026] PHP 8.3.6 Development Server (http://localhost:3000) started
+[Mon Feb 23 12:22:19 2026] [::1]:36626 Accepted
+[Mon Feb 23 12:22:19 2026] [::1]:36626 [200]: GET /api.php?action=leads
+[Mon Feb 23 12:22:19 2026] [::1]:36626 Closing
+[Mon Feb 23 12:23:03 2026] [::1]:43058 Accepted
+[Mon Feb 23 12:23:03 2026] [::1]:43058 [200]: GET /index.html
+[Mon Feb 23 12:23:03 2026] [::1]:43058 Closing
+[Mon Feb 23 12:23:03 2026] [::1]:43070 Accepted
+[Mon Feb 23 12:23:03 2026] [::1]:43074 Accepted
+[Mon Feb 23 12:23:03 2026] [::1]:43070 [200]: GET /assets/index-B0bok_t5.css
+[Mon Feb 23 12:23:03 2026] [::1]:43074 [200]: GET /assets/index-DaqFuBVr.js
+[Mon Feb 23 12:23:03 2026] [::1]:43070 Closing
+[Mon Feb 23 12:23:03 2026] [::1]:43074 Closing
+[Mon Feb 23 12:23:04 2026] [::1]:43076 Accepted
+[Mon Feb 23 12:23:04 2026] [::1]:43076 [200]: GET /api.php
+[Mon Feb 23 12:23:04 2026] [::1]:43076 Closing
+[Mon Feb 23 12:23:04 2026] [::1]:43092 Accepted
+[Mon Feb 23 12:23:04 2026] [::1]:43092 [200]: GET /api.php?action=leads
+[Mon Feb 23 12:23:04 2026] [::1]:43092 Closing
