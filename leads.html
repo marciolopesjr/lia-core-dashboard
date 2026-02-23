@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codemakers CRM | LIA 💅</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --bg: #000000;
+            --card: #0a0a0b;
+            --accent: #ff00ff;
+            --text-main: #ffffff;
+            --text-dim: #666666;
+            --success: #00ff66;
+            --warning: #ffcc00;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            padding: 40px;
+        }
+        .nav { margin-bottom: 40px; display: flex; gap: 20px; }
+        .nav a { color: var(--text-dim); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        .nav a:hover, .nav a.active { color: var(--accent); }
+
+        .crm-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; }
+        .stats-summary { display: flex; gap: 30px; }
+        .stat-box { text-align: left; }
+        .stat-box div { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; }
+        .stat-box span { font-size: 1.5rem; font-weight: 800; color: var(--accent); }
+
+        .leads-table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 24px; overflow: hidden; border: 1px solid #161618; }
+        .leads-table th { text-align: left; padding: 20px; font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; border-bottom: 1px solid #161618; }
+        .leads-table td { padding: 20px; font-size: 0.9rem; border-bottom: 1px solid #111; }
+        .leads-table tr:hover { background: #0f0f11; }
+
+        .status-badge { padding: 4px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: bold; }
+        .status-site { background: rgba(0, 255, 102, 0.1); color: var(--success); }
+        .status-no-site { background: rgba(255, 204, 0, 0.1); color: var(--warning); }
+
+        .btn-action { background: var(--accent); color: white; border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 0.75rem; font-weight: bold; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
+        .btn-action:hover { opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="index.html">← Dashboard</a>
+        <a href="sikeira.html">SiKeira Branding</a>
+        <a href="stats.html">System Stats</a>
+        <a href="#" class="active">Codemakers CRM</a>
+    </div>
+
+    <div class="crm-header">
+        <div>
+            <h1 style="font-size: 2.5rem; letter-spacing: -1px;">Vendas Regionais 🚀</h1>
+            <p style="color: var(--text-dim);">Gestão de leads de saúde: Osório & Tramandaí.</p>
+        </div>
+        <div class="stats-summary">
+            <div class="stat-box">
+                <div>Total Leads</div>
+                <span>42</span>
+            </div>
+            <div class="stat-box">
+                <div>Sem Site</div>
+                <span style="color: var(--warning);">18</span>
+            </div>
+            <div class="stat-box">
+                <div>Propostas</div>
+                <span style="color: var(--success);">100%</span>
+            </div>
+        </div>
+    </div>
+
+    <table class="leads-table">
+        <thead>
+            <tr>
+                <th>Lead</th>
+                <th>Cidade</th>
+                <th>Status Site</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody id="leads-body">
+            <!-- Dados via API em breve -->
+            <tr>
+                <td>Dra Larissa Fraga - Odontopediatria</td>
+                <td>Osório</td>
+                <td><span class="status-badge status-no-site">Sem Site Oficial</span></td>
+                <td><a href="https://wa.me/5551996906365" class="btn-action"><i class="bi bi-whatsapp"></i> Proposta</a></td>
+            </tr>
+            <tr>
+                <td>Psicólogo Felipe Konflanz</td>
+                <td>Tramandaí</td>
+                <td><span class="status-badge status-site">Possui Site</span></td>
+                <td><a href="https://wa.me/5551995829717" class="btn-action"><i class="bi bi-whatsapp"></i> Recontato</a></td>
+            </tr>
+            <tr>
+                <td>Kálita Fernandes Fisioterapeuta</td>
+                <td>Osório</td>
+                <td><span class="status-badge status-no-site">Sem Site Oficial</span></td>
+                <td><a href="https://wa.me/5551999140796" class="btn-action"><i class="bi bi-whatsapp"></i> Proposta</a></td>
+            </tr>
+            <tr>
+                <td>Psicóloga Letícia Raythz</td>
+                <td>Osório</td>
+                <td><span class="status-badge status-no-site">Sem Site Oficial</span></td>
+                <td><a href="https://wa.me/5551997123592" class="btn-action"><i class="bi bi-whatsapp"></i> Proposta</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="margin-top: 30px; padding: 20px; background: var(--card); border-radius: 20px; border: 1px solid #161618;">
+        <h3 style="font-size: 0.9rem; color: var(--accent); margin-bottom: 10px;">Lia Thoughts_</h3>
+        <p style="color: #888; font-size: 0.85rem; font-style: italic;">
+            "Márcio, filtrei os leads que não possuem site oficial (só Instagram ou Doctoralia). Esses são o 'filé mignon' para a Codemakers. Os botões de ação já abrem o WhatsApp com a proposta personalizada que eu gerei." 💅
+        </p>
+    </div>
+</body>
+</html>
