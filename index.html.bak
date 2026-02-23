@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIA_BENTO_CORE v4.2 💅</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --bg: #000000;
+            --card: #0a0a0b;
+            --accent: #ff00ff;
+            --accent-glow: rgba(255, 0, 255, 0.3);
+            --subtle: #161618;
+            --text-main: #ffffff;
+            --text-dim: #666666;
+            --up: #00ff66;
+            --down: #ff3333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Background Effects */
+        .glass-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 20% 30%, #1a001a 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, #001a1a 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, 180px);
+            gap: 16px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        @media (max-width: 900px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto;
+            }
+            .col-2, .col-3 { grid-column: span 2; }
+            .row-2 { grid-row: span 1; height: 380px; }
+            .item { height: auto; min-height: 180px; }
+        }
+
+        @media (max-width: 600px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .col-2, .col-3, .row-2 { grid-column: span 1; grid-row: span 1; height: auto; min-height: 160px; }
+            .profile { flex-direction: column; text-align: center; gap: 10px; }
+            .avatar { width: 60px; height: 60px; font-size: 2rem; }
+            .stat-val { font-size: 2rem; }
+            body { padding: 10px; }
+        }
+
+        .item {
+            background: var(--card);
+            border: 1px solid var(--subtle);
+            border-radius: 28px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+        }
+
+        .item:hover {
+            border-color: var(--accent);
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px var(--accent-glow);
+        }
+
+        /* Span variations */
+        .col-2 { grid-column: span 2; }
+        .row-2 { grid-row: span 2; }
+        .col-3 { grid-column: span 3; }
+
+        .title { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px; }
+        .title i { color: var(--accent); }
+
+        /* Profile Widget */
+        .profile { display: flex; align-items: center; gap: 20px; height: 100%; }
+        .avatar-container { position: relative; }
+        .avatar { width: 80px; height: 80px; background: linear-gradient(135deg, var(--accent), #58a6ff); border-radius: 22px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; position: relative; z-index: 2; }
+        .avatar-glow { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--accent); filter: blur(20px); opacity: 0.4; }
+
+        /* Stats Numbers */
+        .stat-val { font-size: 2.5rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; letter-spacing: -2px; }
+        .stat-label { font-size: 0.8rem; color: var(--text-dim); }
+
+        /* Crypto Matrix */
+        .crypto-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #111; }
+        .crypto-row:last-child { border: none; }
+        .coin-icon { width: 24px; height: 24px; background: #1a1a1a; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; }
+
+        /* Terminal Style */
+        .terminal-box { background: #000; height: 100%; border-radius: 16px; padding: 15px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; border: 1px solid #111; position: relative; }
+        .terminal-content { height: calc(100% - 40px); overflow-y: auto; color: #00ff66; }
+        .terminal-content span { color: var(--accent); }
+
+        /* Interactive Input */
+        .input-wrapper { position: relative; margin-top: 10px; }
+        input { width: 100%; background: #111; border: 1px solid #222; padding: 12px 15px; border-radius: 12px; color: white; outline: none; font-family: inherit; font-size: 0.8rem; transition: 0.3s; }
+        input:focus { border-color: var(--accent); background: #161618; }
+
+        /* SKS Branding Card */
+        .sks-brand { height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #fff; color: #000; border-radius: 20px; }
+
+        .pulse { width: 10px; height: 10px; background: var(--up); border-radius: 50%; display: inline-block; margin-right: 5px; box-shadow: 0 0 10px var(--up); animation: p 2s infinite; }
+        @keyframes p { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.2); } 100% { opacity: 1; transform: scale(1); } }
+
+    </style>
+</head>
+<body>
+    <div class="glass-bg"></div>
+    
+    <div class="bento-grid">
+        <!-- Profile & Identity -->
+        <div class="item col-2" onclick="window.location.href='index.html'" style="cursor:pointer">
+            <div class="profile">
+                <div class="avatar-container">
+                    <div class="avatar">💅</div>
+                    <div class="avatar-glow"></div>
+                </div>
+                <div>
+                    <h2 style="font-size: 1.8rem; letter-spacing: -1px;">LIA_CORE v4.2</h2>
+                    <div style="color: var(--up); font-size: 0.8rem; font-weight: 600;"><span class="pulse"></span> SISTEMA_OPERANTE</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CPU/RAM Stats -->
+        <div class="item" onclick="window.location.href='stats.html'" style="cursor:pointer">
+            <div class="title"><i class="bi bi-cpu"></i> CPU Load</div>
+            <div class="stat-val">02%</div>
+            <div class="stat-label">Oracle Cloud ARM64</div>
+        </div>
+
+        <!-- Crypto Watch -->
+        <div class="item row-2">
+            <div class="title"><i class="bi bi-currency-bitcoin"></i> Market Pulse</div>
+            <div class="crypto-row">
+                <div style="display:flex; gap:10px; align-items:center;">
+                    <div class="coin-icon">₿</div>
+                    <span style="font-weight:700">BTC</span>
+                </div>
+                <div style="text-align:right">
+                    <div style="font-size:0.9rem">$68k</div>
+                    <div style="color:var(--up); font-size:0.7rem">+0.2%</div>
+                </div>
+            </div>
+            <div class="crypto-row">
+                <div style="display:flex; gap:10px; align-items:center;">
+                    <div class="coin-icon">X</div>
+                    <span style="font-weight:700">XRP</span>
+                </div>
+                <div style="text-align:right">
+                    <div style="font-size:0.9rem">$1.42</div>
+                    <div style="color:var(--down); font-size:0.7rem">-0.7%</div>
+                </div>
+            </div>
+            <div class="crypto-row">
+                <div style="display:flex; gap:10px; align-items:center;">
+                    <div class="coin-icon">C</div>
+                    <span style="font-weight:700">CHZ</span>
+                </div>
+                <div style="text-align:right">
+                    <div style="font-size:0.9rem">$0.033</div>
+                    <div style="color:var(--down); font-size:0.7rem">-6.4%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RAM Stats -->
+        <div class="item" onclick="window.location.href='stats.html'" style="cursor:pointer">
+            <div class="title"><i class="bi bi-memory"></i> RAM Usage</div>
+            <div class="stat-val">12<span>GB</span></div>
+            <div class="stat-label">DDR4 ECC Optimized</div>
+        </div>
+
+        <!-- Terminal / Log -->
+        <div class="item col-2 row-2">
+            <div class="title"><i class="bi bi-terminal"></i> Lia_Log_Stream</div>
+            <div class="terminal-box">
+                <div class="terminal-content" id="log">
+                    [03:35] <span>SYS:</span> Bento Grid v4.2 Deployed.<br>
+                    [03:36] <span>LIA:</span> "Vagabundagem aqui não tem vez."<br>
+                    [03:36] <span>JULES:</span> Issue #1 Pending Backend...<br>
+                    [03:37] <span>SKS:</span> Concept Logo v1.0 Live.<br>
+                    [03:37] <span>USER:</span> "Trabalha no front!"<br>
+                    > _
+                </div>
+                <div class="input-wrapper">
+                    <input type="text" placeholder="Executar comando no servidor..." id="cmd">
+                </div>
+            </div>
+        </div>
+
+        <!-- SiKeira Preview -->
+        <div class="item col-2" onclick="window.location.href='sikeira.html'" style="cursor:pointer">
+            <div class="title"><i class="bi bi-palette"></i> SiKeira_SKS_Concept</div>
+            <div class="sks-brand">
+                <div style="font-size: 3rem; font-weight: 900; letter-spacing: -3px;">SKS</div>
+                <div style="font-size: 0.6rem; text-transform: uppercase; font-weight: 800; letter-spacing: 3px; margin-top: -5px;">SiKeira Scooters</div>
+                <div style="font-size: 1.5rem; margin-top: 5px;">🛵</div>
+            </div>
+        </div>
+
+        <!-- Disk Info -->
+        <div class="item" onclick="window.location.href='leads.html'" style="cursor:pointer">
+            <div class="title"><i class="bi bi-people"></i> CRM Leads</div>
+            <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent);">42</div>
+            <div class="stat-label">Leads de Saúde Regionais</div>
+        </div>
+    </div>
+
+    <script>
+        const input = document.getElementById('cmd');
+        const log = document.getElementById('log');
+        
+        // Inicia a conexão SSE para tempo real (FASE_01)
+        const evtSource = new EventSource("stream.php");
+
+        evtSource.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            
+            if (data.type === 'metrics') {
+                document.querySelectorAll('.stat-val')[0].innerText = data.cpu;
+                document.querySelectorAll('.stat-val')[1].innerText = data.ram;
+                document.querySelectorAll('.stat-val')[2].innerText = data.disk;
+            }
+            
+            if (data.type === 'log') {
+                const time = new Date().toLocaleTimeString('pt-BR', {hour12: false, hour: '2-digit', minute:'2-digit'});
+                // Evita duplicatas simples
+                if (!log.innerHTML.includes(data.content.substring(0, 20))) {
+                    log.innerHTML += `[${time}] <span>STREAM:</span> ${data.content}<br>`;
+                    log.scrollTop = log.scrollHeight;
+                }
+            }
+        };
+
+        evtSource.onerror = (err) => {
+            console.error("SSE Connection Failed: ", err);
+        };
+
+        input.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter') {
+                const val = input.value;
+                input.value = '';
+                const time = new Date().toLocaleTimeString('pt-BR', {hour12: false, hour: '2-digit', minute:'2-digit'});
+                log.innerHTML += `[${time}] <span>CMD:</span> ${val}<br>`;
+                log.scrollTop = log.scrollHeight;
+            }
+        });
+    </script>
+</body>
+</html>
