@@ -11,6 +11,7 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'assets',
     emptyOutDir: true,
+    cssCodeSplit: false,
   },
   base: './',
 })
