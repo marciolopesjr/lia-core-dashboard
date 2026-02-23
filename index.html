@@ -168,19 +168,37 @@
         <!-- Item 6: Server Info -->
         <div class="item">
             <div class="title">Node Stats</div>
-            <div style="font-size: 1.2rem; font-weight: bold;">Lia_Oracle_01</div>
-            <div style="font-size: 0.7rem; color: var(--text-dim); margin-top: 5px;">IP: 10.0.0.73 <br> Region: sa-vinhedo-1</div>
+            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 8px;">Lia_Oracle_01</div>
+            <div id="cpu-stat" style="font-size: 0.9rem; color: var(--accent); margin-bottom: 4px;">CPU: --%</div>
+            <div id="ram-stat" style="font-size: 0.9rem; color: var(--accent); margin-bottom: 4px;">RAM: --%</div>
+            <div id="disk-stat" style="font-size: 0.9rem; color: var(--accent);">Disk: --%</div>
         </div>
     </div>
 
+    <script src="/socket.io/socket.io.js"></script>
     <script>
+        const socket = io();
+
+        socket.on('stats', (stats) => {
+            document.getElementById('cpu-stat').innerText = `CPU: ${stats.cpu}%`;
+            document.getElementById('ram-stat').innerText = `RAM: ${stats.ram}%`;
+            document.getElementById('disk-stat').innerText = `Disk: ${stats.disk}%`;
+        });
+
+        socket.on('log', (message) => {
+            const terminal = document.querySelector('.terminal');
+            terminal.innerHTML += `<br>${message}`;
+            terminal.scrollTop = terminal.scrollHeight;
+        });
+
         const input = document.getElementById('terminal-input');
         input.addEventListener('keypress', (e) => {
             if(e.key === 'Enter') {
                 const val = input.value;
-                input.value = '';
-                // Em breve implementamos o salvamento disso no servidor
-                alert('Sinal recebido: ' + val + '\nLia vai processar isso agora.');
+                if (val.trim()) {
+                    socket.emit('command', val);
+                    input.value = '';
+                }
             }
         });
     </script>
