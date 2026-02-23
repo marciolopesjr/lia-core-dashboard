@@ -215,6 +215,29 @@
         const input = document.getElementById('cmd');
         const log = document.getElementById('log');
         
+        async function updateStats() {
+            try {
+                const response = await fetch('api.php');
+                const data = await response.json();
+                
+                // Atualiza os widgets
+                document.querySelectorAll('.stat-val')[0].innerText = data.metrics.cpu;
+                document.querySelectorAll('.stat-val')[1].innerText = data.metrics.ram.split(' ')[0];
+                document.querySelectorAll('.stat-val')[2].innerText = data.metrics.disk;
+                
+                // Atualiza o log da Lia
+                const time = new Date().toLocaleTimeString('pt-BR', {hour12: false, hour: '2-digit', minute:'2-digit'});
+                log.innerHTML += `[${time}] <span>LIA:</span> "${data.lia_status}"<br>`;
+                log.scrollTop = log.scrollHeight;
+            } catch (e) {
+                console.error("Erro ao carregar dados da API: ", e);
+            }
+        }
+
+        // Atualiza a cada 30 segundos
+        setInterval(updateStats, 30000);
+        updateStats();
+
         input.addEventListener('keypress', (e) => {
             if(e.key === 'Enter') {
                 const val = input.value;
