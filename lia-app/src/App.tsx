@@ -23,6 +23,24 @@ export default function App() {
     uptime: '14d 03h 22m'
   });
 
+  const [designImage, setDesignImage] = useState<string | null>(null);
+  const [isGenerating, setIsGenerating] = useState(false);
+
+  const generateLogo = async (type: string) => {
+    setIsGenerating(true);
+    try {
+      const response = await fetch(`./design_lab.php?type=${type}`);
+      const data = await response.json();
+      if (data.success) {
+        setDesignImage(`./${data.image}?t=${Date.now()}`);
+      }
+    } catch (error) {
+      console.error('Error generating logo:', error);
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
   useEffect(() => {
     const interval = setInterval(() => {
       setStats(prev => ({
@@ -115,11 +133,65 @@ export default function App() {
           </BentoCard>
 
           {/* Design Lab Card */}
-          <BentoCard title="Design Lab" icon={<Zap size={14}/>} className="md:row-span-2 bg-white text-black hover:bg-white/95 transition-colors">
-            <div className="flex flex-col items-center justify-center h-full py-4">
-              <div className="text-7xl font-black tracking-tighter leading-none">SKS</div>
-              <div className="text-[0.6rem] font-black uppercase tracking-[0.4em] mt-1 opacity-40">SiKeira Scooters</div>
-              <div className="mt-8 text-5xl grayscale hover:grayscale-0 transition-all duration-500">🛵</div>
+          <BentoCard title="Design Lab" icon={<Zap size={14}/>} className="md:row-span-2 bg-white text-black hover:bg-white/95 transition-all duration-500 overflow-hidden">
+            <div className="flex flex-col items-center justify-center h-full py-4 relative">
+              <div className="flex-1 flex flex-col items-center justify-center w-full">
+                {designImage ? (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
+                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                    key={designImage}
+                    className="w-full flex items-center justify-center p-4"
+                  >
+                    <img
+                      src={designImage}
+                      alt="Generated Logo"
+                      className="max-h-40 w-full object-contain drop-shadow-2xl rounded-lg"
+                    />
+                  </motion.div>
+                ) : (
+                  <div className="text-center">
+                    <div className="text-7xl font-black tracking-tighter leading-none">SKS</div>
+                    <div className="text-[0.6rem] font-black uppercase tracking-[0.4em] mt-1 opacity-40">SiKeira Scooters</div>
+                    <div className="mt-8 text-5xl grayscale hover:grayscale-0 transition-all duration-500">🛵</div>
+                  </div>
+                )}
+              </div>
+
+              {/* Action Buttons */}
+              <div className="mt-6 grid grid-cols-3 gap-2 w-full px-2">
+                <button
+                  onClick={() => generateLogo('round')}
+                  disabled={isGenerating}
+                  className="group relative overflow-hidden text-[0.5rem] font-black uppercase tracking-widest bg-black text-white py-3 rounded-xl hover:bg-magenta transition-all active:scale-95 disabled:opacity-50"
+                >
+                  <span className="relative z-10">{isGenerating ? '...' : 'Round'}</span>
+                </button>
+                <button
+                  onClick={() => generateLogo('dark')}
+                  disabled={isGenerating}
+                  className="group relative overflow-hidden text-[0.5rem] font-black uppercase tracking-widest bg-black text-white py-3 rounded-xl hover:bg-magenta transition-all active:scale-95 disabled:opacity-50"
+                >
+                  <span className="relative z-10">{isGenerating ? '...' : 'Dark'}</span>
+                </button>
+                <button
+                  onClick={() => generateLogo('banner')}
+                  disabled={isGenerating}
+                  className="group relative overflow-hidden text-[0.5rem] font-black uppercase tracking-widest bg-black text-white py-3 rounded-xl hover:bg-magenta transition-all active:scale-95 disabled:opacity-50"
+                >
+                  <span className="relative z-10">{isGenerating ? '...' : 'Banner'}</span>
+                </button>
+              </div>
+
+              {isGenerating && (
+                <div className="absolute inset-0 bg-white/50 backdrop-blur-[2px] flex items-center justify-center z-20 rounded-xl">
+                  <div className="flex gap-1">
+                    <div className="w-1.5 h-1.5 bg-magenta rounded-full animate-bounce" />
+                    <div className="w-1.5 h-1.5 bg-magenta rounded-full animate-bounce [animation-delay:0.2s]" />
+                    <div className="w-1.5 h-1.5 bg-magenta rounded-full animate-bounce [animation-delay:0.4s]" />
+                  </div>
+                </div>
+              )}
             </div>
           </BentoCard>
 

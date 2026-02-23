@@ -1,0 +1,28 @@
+[Mon Feb 23 12:21:05 2026] PHP 8.3.6 Development Server (http://localhost:3000) started
+[Mon Feb 23 12:21:41 2026] [::1]:36106 Accepted
+[Mon Feb 23 12:21:41 2026] [::1]:36106 [200]: GET /
+[Mon Feb 23 12:21:41 2026] [::1]:36106 Closing
+[Mon Feb 23 12:21:41 2026] [::1]:36118 Accepted
+[Mon Feb 23 12:21:41 2026] [::1]:36124 Accepted
+[Mon Feb 23 12:21:41 2026] [::1]:36118 [200]: GET /assets/index-Ds96k_pd.css
+[Mon Feb 23 12:21:41 2026] [::1]:36124 [200]: GET /assets/index-BlhRnBrm.js
+[Mon Feb 23 12:21:41 2026] [::1]:36118 Closing
+[Mon Feb 23 12:21:41 2026] [::1]:36124 Closing
+[Mon Feb 23 12:21:43 2026] [::1]:36130 Accepted
+[Mon Feb 23 12:21:43 2026] [::1]:36130 [200]: GET /design_lab.php?type=round
+[Mon Feb 23 12:21:43 2026] [::1]:36130 Closing
+[Mon Feb 23 12:21:43 2026] [::1]:36142 Accepted
+[Mon Feb 23 12:21:43 2026] [::1]:36142 [200]: GET /assets/branding/sks_round_v1.png?t=1771849303906
+[Mon Feb 23 12:21:43 2026] [::1]:36142 Closing
+[Mon Feb 23 12:21:45 2026] [::1]:50652 Accepted
+[Mon Feb 23 12:21:45 2026] [::1]:50652 [200]: GET /design_lab.php?type=dark
+[Mon Feb 23 12:21:45 2026] [::1]:50652 Closing
+[Mon Feb 23 12:21:45 2026] [::1]:50660 Accepted
+[Mon Feb 23 12:21:45 2026] [::1]:50660 [200]: GET /assets/branding/sks_round_dark_v1.png?t=1771849305538
+[Mon Feb 23 12:21:45 2026] [::1]:50660 Closing
+[Mon Feb 23 12:21:47 2026] [::1]:50672 Accepted
+[Mon Feb 23 12:21:48 2026] [::1]:50672 [200]: GET /design_lab.php?type=banner
+[Mon Feb 23 12:21:48 2026] [::1]:50672 Closing
+[Mon Feb 23 12:21:48 2026] [::1]:50688 Accepted
+[Mon Feb 23 12:21:48 2026] [::1]:50688 [200]: GET /assets/branding/sks_banner_v1.png?t=1771849308259
+[Mon Feb 23 12:21:48 2026] [::1]:50688 Closing
