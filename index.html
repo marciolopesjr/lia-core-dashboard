@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIA_BENTO_CORE v4.0 💅</title>
+    <style>
+        :root {
+            --bg: #000000;
+            --card: #0a0a0b;
+            --accent: #ff00ff;
+            --subtle: #161618;
+            --text-main: #ffffff;
+            --text-dim: #666666;
+            --up: #00ff66;
+            --down: #ff3333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Bento Grid Layout */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, 180px);
+            gap: 16px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .item {
+            background: var(--card);
+            border: 1px solid var(--subtle);
+            border-radius: 24px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .item:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        /* Span variations */
+        .col-2 { grid-column: span 2; }
+        .row-2 { grid-row: span 2; }
+        .col-3 { grid-column: span 3; }
+
+        /* Widget Styles */
+        .title { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; letter-spacing: 1px; }
+        
+        /* Profile Widget */
+        .profile { display: flex; align-items: center; gap: 16px; }
+        .avatar { width: 64px; height: 64px; background: linear-gradient(45deg, var(--accent), #58a6ff); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+
+        /* Crypto Widget */
+        .crypto-list { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
+        .crypto-row { display: flex; justify-content: space-between; align-items: center; }
+        .coin { font-weight: 600; }
+        .price { font-family: 'JetBrains Mono', monospace; }
+        .change { font-size: 0.8rem; padding: 4px 8px; border-radius: 8px; }
+        .change.up { background: rgba(0, 255, 102, 0.1); color: var(--up); }
+        .change.down { background: rgba(255, 51, 51, 0.1); color: var(--down); }
+
+        /* Terminal Widget */
+        .terminal { background: #000; height: 100%; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--accent); overflow-y: auto; padding: 10px; border-radius: 12px; border: 1px solid #111; }
+
+        /* Design Preview */
+        .preview-content { height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 2px dashed var(--subtle); border-radius: 16px; color: var(--text-dim); }
+
+        /* Status Pulse */
+        .pulse-container { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--up); }
+        .pulse { width: 8px; height: 8px; background: var(--up); border-radius: 50%; box-shadow: 0 0 10px var(--up); animation: blink 2s infinite; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
+        /* Interactive Input */
+        input { width: 100%; background: var(--subtle); border: none; padding: 12px 20px; border-radius: 12px; color: white; outline: none; margin-top: 15px; }
+
+    </style>
+</head>
+<body>
+    <div class="bento-grid">
+        <!-- Item 1: Profile -->
+        <div class="item col-2">
+            <div class="title">System Identity</div>
+            <div class="profile">
+                <div class="avatar">💅</div>
+                <div>
+                    <h2 style="font-size: 1.5rem;">Lia Core</h2>
+                    <div class="pulse-container"><div class="pulse"></div> EXPOSTA_PUBLICAMENTE</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item 2: Crypto Market -->
+        <div class="item row-2">
+            <div class="title">Market Pulse</div>
+            <div class="crypto-list">
+                <div class="crypto-row">
+                    <span class="coin">BTC</span>
+                    <span class="price">$68,022</span>
+                    <span class="change up">+0.2%</span>
+                </div>
+                <div class="crypto-row">
+                    <span class="coin">XRP</span>
+                    <span class="price">$1.42</span>
+                    <span class="change down">-0.7%</span>
+                </div>
+                <div class="crypto-row">
+                    <span class="coin">CHZ</span>
+                    <span class="price">$0.033</span>
+                    <span class="change down">-6.4%</span>
+                </div>
+            </div>
+            <div style="margin-top: 20px; font-size: 0.7rem; color: var(--text-dim);">
+                * Atualizado via CoinGecko Free API
+            </div>
+        </div>
+
+        <!-- Item 3: Tasks -->
+        <div class="item row-2">
+            <div class="title">Next Steps</div>
+            <ul style="list-style: none; font-size: 0.85rem; color: #aaa; line-height: 2;">
+                <li><input type="checkbox" checked disabled> Reverse Tunnel</li>
+                <li><input type="checkbox" checked disabled> Bento Grid UI</li>
+                <li><input type="checkbox" disabled> Logo SiKeira</li>
+                <li><input type="checkbox" disabled> Copy Mobilidade</li>
+            </ul>
+        </div>
+
+        <!-- Item 4: Terminal / Thoughts -->
+        <div class="item col-2 row-2">
+            <div class="title">Lia_Thoughts_Log</div>
+            <div class="terminal">
+                > Initializing Bento System...<br>
+                > Tunnel Serveo: Stable<br>
+                > Márcio: "Deixe maneiro, bento grid."<br>
+                > Lia: "💅💅💅"<br>
+                > Analisando referências para SKS...<br>
+                > Otimizando prospecção Codemakers...<br>
+                > Aguardando próximo comando.
+            </div>
+            <input type="text" placeholder="Envie um sinal para o servidor..." id="terminal-input">
+        </div>
+
+        <!-- Item 5: Design Canvas -->
+        <div class="item col-2">
+            <div class="title">Canvas Preview</div>
+            <div class="preview-content">
+                <span style="font-size: 2rem;">🎨</span>
+                <p style="font-size: 0.8rem; margin-top: 5px;">Aguardando rascunho SiKeira</p>
+            </div>
+        </div>
+
+        <!-- Item 6: Server Info -->
+        <div class="item">
+            <div class="title">Node Stats</div>
+            <div style="font-size: 1.2rem; font-weight: bold;">Lia_Oracle_01</div>
+            <div style="font-size: 0.7rem; color: var(--text-dim); margin-top: 5px;">IP: 10.0.0.73 <br> Region: sa-vinhedo-1</div>
+        </div>
+    </div>
+
+    <script>
+        const input = document.getElementById('terminal-input');
+        input.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter') {
+                const val = input.value;
+                input.value = '';
+                // Em breve implementamos o salvamento disso no servidor
+                alert('Sinal recebido: ' + val + '\nLia vai processar isso agora.');
+            }
+        });
+    </script>
+</body>
+</html>
