@@ -13,6 +13,7 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import { BentoCard } from './components/BentoCard';
+import { LogStream } from './components/LogStream';
 
 export default function App() {
   const [stats, setStats] = useState({
@@ -93,25 +94,7 @@ export default function App() {
 
           {/* Log Stream Card */}
           <BentoCard title="Log Stream" icon={<Terminal size={14}/>} className="md:col-span-2 md:row-span-2">
-            <div className="h-full font-mono text-[0.7rem] text-magenta/70 overflow-y-auto space-y-3 pr-2 scrollbar-hide">
-              <div className="flex gap-3">
-                <span className="text-white/10 shrink-0">03:59</span>
-                <span>[SYS]: LIA_OS v5.0 Kernel Initialized.</span>
-              </div>
-              <div className="flex gap-3 text-white/80">
-                <span className="text-white/10 shrink-0">04:00</span>
-                <span>[LIA]: <span className="italic text-magenta">"Framework e Tailwind? Agora sim o pau vai quebrar."</span></span>
-              </div>
-              <div className="flex gap-3">
-                <span className="text-white/10 shrink-0">04:01</span>
-                <span>[LOG]: Vite Build Server Active.</span>
-              </div>
-              <div className="flex gap-3 text-green-500/50">
-                <span className="text-white/10 shrink-0">04:02</span>
-                <span>[NET]: Serveo Tunnel established.</span>
-              </div>
-              <div className="animate-pulse text-magenta mt-2">_</div>
-            </div>
+            <LogStream />
           </BentoCard>
 
           {/* Design Lab Card */}
