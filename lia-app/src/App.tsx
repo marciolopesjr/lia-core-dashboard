@@ -17,21 +17,42 @@ import { BentoCard } from './components/BentoCard';
 export default function App() {
   const [stats, setStats] = useState({
     cpu: '0%',
-    ram: '12.4GB',
-    disk: '45%',
-    lia_status: 'SISTEMA_OPERANTE',
-    uptime: '14d 03h 22m'
+    ram: '0%',
+    ram_raw: '0GB',
+    disk: '0%',
+    lia_status: 'INICIALIZANDO...',
+    uptime: '0m'
   });
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setStats(prev => ({
-        ...prev,
-        cpu: `${Math.floor(Math.random() * 5 + 1)}%`,
-      }));
-    }, 3000);
+    const eventSource = new EventSource('/stream.php');
 
-    return () => clearInterval(interval);
+    eventSource.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data);
+        if (data.type === 'metrics') {
+          setStats(prev => ({
+            ...prev,
+            cpu: data.cpu,
+            ram: data.ram,
+            ram_raw: data.ram_raw,
+            disk: data.disk,
+            uptime: data.uptime,
+            lia_status: data.lia_status
+          }));
+        }
+      } catch (err) {
+        console.error("Erro ao processar dados SSE:", err);
+      }
+    };
+
+    eventSource.onerror = (err) => {
+      console.error("Erro na conexão SSE:", err);
+    };
+
+    return () => {
+      eventSource.close();
+    };
   }, []);
 
   return (
@@ -87,7 +108,9 @@ export default function App() {
           </BentoCard>
 
           <BentoCard title="RAM" icon={<Database size={14}/>}>
-            <div className="text-5xl font-black font-mono tracking-tighter bg-gradient-to-br from-white to-white/50 bg-clip-text text-transparent">12<span className="text-xl">GB</span></div>
+            <div className="text-5xl font-black font-mono tracking-tighter bg-gradient-to-br from-white to-white/50 bg-clip-text text-transparent">
+              {stats.ram_raw.replace('GB', '')}<span className="text-xl">GB</span>
+            </div>
             <p className="text-[0.65rem] text-white/30 uppercase mt-2 font-bold tracking-wider">DDR4 ECC Memory</p>
           </BentoCard>
 
@@ -130,9 +153,14 @@ export default function App() {
           </BentoCard>
 
           <BentoCard title="Storage" icon={<HardDrive size={14}/>}>
-             <div className="text-5xl font-black tracking-tighter bg-gradient-to-br from-white to-white/50 bg-clip-text text-transparent">45<span className="text-xl">%</span></div>
+             <div className="text-5xl font-black tracking-tighter bg-gradient-to-br from-white to-white/50 bg-clip-text text-transparent">
+               {stats.disk.replace('%', '')}<span className="text-xl">%</span>
+             </div>
              <div className="mt-3 w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
-                <div className="h-full bg-magenta w-[45%] rounded-full shadow-[0_0_10px_rgba(255,0,255,0.5)]" />
+                <div
+                  className="h-full bg-magenta rounded-full shadow-[0_0_10px_rgba(255,0,255,0.5)] transition-all duration-500"
+                  style={{ width: stats.disk }}
+                />
              </div>
           </BentoCard>
 

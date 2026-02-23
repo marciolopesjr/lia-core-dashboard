@@ -1,0 +1,25 @@
+[Mon Feb 23 12:27:19 2026] PHP 8.3.6 Development Server (http://localhost:3000) started
+[Mon Feb 23 12:28:05 2026] [::1]:43250 Accepted
+[Mon Feb 23 12:28:05 2026] [::1]:43250 [200]: GET /
+[Mon Feb 23 12:28:05 2026] [::1]:43250 Closing
+[Mon Feb 23 12:28:05 2026] [::1]:43262 Accepted
+[Mon Feb 23 12:28:05 2026] [::1]:43270 Accepted
+[Mon Feb 23 12:28:05 2026] [::1]:43262 [200]: GET /assets/index--boiiOTQ.css
+[Mon Feb 23 12:28:05 2026] [::1]:43262 Closing
+[Mon Feb 23 12:28:05 2026] [::1]:43270 [200]: GET /assets/index-D1PQVg9v.js
+[Mon Feb 23 12:28:05 2026] [::1]:43270 Closing
+[Mon Feb 23 12:28:06 2026] [::1]:43274 Accepted
+[Mon Feb 23 12:28:10 2026] [::1]:43274 [200]: GET /stream.php
+[Mon Feb 23 12:28:10 2026] [::1]:43274 Closing
+[Mon Feb 23 12:28:18 2026] [::1]:39812 Accepted
+[Mon Feb 23 12:28:18 2026] [::1]:39812 [200]: GET /
+[Mon Feb 23 12:28:18 2026] [::1]:39812 Closing
+[Mon Feb 23 12:28:18 2026] [::1]:39816 Accepted
+[Mon Feb 23 12:28:18 2026] [::1]:39816 [200]: GET /assets/index-D1PQVg9v.js
+[Mon Feb 23 12:28:18 2026] [::1]:39816 Closing
+[Mon Feb 23 12:28:18 2026] [::1]:39828 Accepted
+[Mon Feb 23 12:28:18 2026] [::1]:39828 [200]: GET /assets/index--boiiOTQ.css
+[Mon Feb 23 12:28:18 2026] [::1]:39828 Closing
+[Mon Feb 23 12:28:19 2026] [::1]:39840 Accepted
+[Mon Feb 23 12:28:28 2026] [::1]:39840 [200]: GET /stream.php
+[Mon Feb 23 12:28:28 2026] [::1]:39840 Closing
