@@ -29,6 +29,13 @@
             grid-template-columns: 1fr 1fr;
             gap: 20px;
         }
+        @media (max-width: 768px) {
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+            .val { font-size: 2.5rem; }
+            .nav { overflow-x: auto; white-space: nowrap; padding-bottom: 10px; }
+        }
         .stat-card {
             background: var(--card);
             border: 1px solid #161618;

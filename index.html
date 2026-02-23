@@ -50,6 +50,28 @@
             width: 100%;
         }
 
+        @media (max-width: 900px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto;
+            }
+            .col-2, .col-3 { grid-column: span 2; }
+            .row-2 { grid-row: span 1; height: 380px; }
+            .item { height: auto; min-height: 180px; }
+        }
+
+        @media (max-width: 600px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .col-2, .col-3, .row-2 { grid-column: span 1; grid-row: span 1; height: auto; min-height: 160px; }
+            .profile { flex-direction: column; text-align: center; gap: 10px; }
+            .avatar { width: 60px; height: 60px; font-size: 2rem; }
+            .stat-val { font-size: 2rem; }
+            body { padding: 10px; }
+        }
+
         .item {
             background: var(--card);
             border: 1px solid var(--subtle);

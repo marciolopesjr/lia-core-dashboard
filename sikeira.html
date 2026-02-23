@@ -29,6 +29,13 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
         }
+        @media (max-width: 900px) {
+            .branding-grid {
+                grid-template-columns: 1fr;
+            }
+            .info-section { grid-column: span 1; }
+            .nav { overflow-x: auto; white-space: nowrap; padding-bottom: 10px; }
+        }
         .brand-card {
             background: var(--card);
             border: 1px solid #161618;
