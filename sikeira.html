@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKS SiKeira Scooters | Branding 💅</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --bg: #000000;
+            --card: #0a0a0b;
+            --accent: #ff00ff;
+            --text-main: #ffffff;
+            --text-dim: #666666;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            padding: 40px;
+        }
+        .nav { margin-bottom: 40px; display: flex; gap: 20px; }
+        .nav a { color: var(--text-dim); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        .nav a:hover, .nav a.active { color: var(--accent); }
+
+        .branding-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .brand-card {
+            background: var(--card);
+            border: 1px solid #161618;
+            border-radius: 24px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+        }
+        .brand-card.white { background: #ffffff; color: #000; }
+        .brand-card.accent { background: var(--accent); color: #fff; }
+
+        .logo-v1 { font-size: 4rem; font-weight: 900; letter-spacing: -4px; }
+        .slogan { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 4px; margin-top: -10px; font-weight: 800; }
+
+        .info-section { margin-top: 40px; grid-column: span 3; background: var(--card); padding: 30px; border-radius: 24px; border: 1px solid #161618; }
+        h1 { font-size: 2rem; margin-bottom: 20px; color: var(--accent); }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="index.html">← Dashboard</a>
+        <a href="#" class="active">SiKeira Branding</a>
+        <a href="stats.html">System Stats</a>
+        <a href="terminal.html">Deep Terminal</a>
+    </div>
+
+    <h1>SiKeira Scooters 🛵</h1>
+    
+    <div class="branding-grid">
+        <div class="brand-card">
+            <div class="logo-v1">SKS</div>
+            <div class="slogan">SiKeira Scooters</div>
+            <p style="margin-top:20px; font-size: 0.7rem; color: #444;">DARK_MODE_LOGO</p>
+        </div>
+        <div class="brand-card white">
+            <div class="logo-v1">SKS</div>
+            <div class="slogan">SiKeira Scooters</div>
+            <p style="margin-top:20px; font-size: 0.7rem; color: #888;">LIGHT_MODE_LOGO</p>
+        </div>
+        <div class="brand-card accent">
+            <div class="logo-v1">SKS</div>
+            <div class="slogan" style="color: #000;">SiKeira Scooters</div>
+            <p style="margin-top:20px; font-size: 0.7rem; color: rgba(255,255,255,0.5);">ACCENT_MODE_LOGO</p>
+        </div>
+
+        <div class="info-section">
+            <h2>Estratégia de Mobilidade 📈</h2>
+            <p style="color: #888; line-height: 1.6;">
+                Foco total em mobilidade urbana sustentável. <br>
+                - Sem necessidade de CNH (conforme legislação vigente para e-scooters).<br>
+                - Emplacamento zero.<br>
+                - Economia de até 95% comparado a veículos a combustão.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

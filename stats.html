@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Stats | LIA_CORE 💅</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --bg: #000000;
+            --card: #0a0a0b;
+            --accent: #ff00ff;
+            --text-main: #ffffff;
+            --text-dim: #666666;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'JetBrains Mono', monospace;
+            padding: 40px;
+        }
+        .nav { margin-bottom: 40px; display: flex; gap: 20px; font-family: 'Inter', sans-serif; }
+        .nav a { color: var(--text-dim); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        .nav a:hover, .nav a.active { color: var(--accent); }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .stat-card {
+            background: var(--card);
+            border: 1px solid #161618;
+            border-radius: 24px;
+            padding: 30px;
+        }
+        .graph-placeholder {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,0,255,0.05) 50%, transparent 100%);
+            border-bottom: 2px solid var(--accent);
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .graph-placeholder::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.02) 41px);
+        }
+        h2 { font-size: 1rem; color: var(--text-dim); text-transform: uppercase; margin-bottom: 10px; }
+        .val { font-size: 3rem; font-weight: 800; color: var(--accent); }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="index.html">← Dashboard</a>
+        <a href="sikeira.html">SiKeira Branding</a>
+        <a href="#" class="active">System Stats</a>
+        <a href="terminal.html">Deep Terminal</a>
+    </div>
+
+    <div class="stats-container">
+        <div class="stat-card">
+            <h2>CPU Performance</h2>
+            <div class="val">2.4%</div>
+            <div class="graph-placeholder"></div>
+        </div>
+        <div class="stat-card">
+            <h2>Memory Load</h2>
+            <div class="val">12.1GB</div>
+            <div class="graph-placeholder"></div>
+        </div>
+        <div class="stat-card">
+            <h2>Network Traffic</h2>
+            <div class="val">142 Mbps</div>
+            <div class="graph-placeholder"></div>
+        </div>
+        <div class="stat-card">
+            <h2>Process Queue</h2>
+            <div class="val">08</div>
+            <div class="graph-placeholder"></div>
+        </div>
+    </div>
+</body>
+</html>
