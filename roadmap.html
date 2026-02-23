@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIA_ROADMAP | Overdrive 💅</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --bg: #000000;
+            --card: #0a0a0b;
+            --accent: #ff00ff;
+            --text-main: #ffffff;
+            --text-dim: #666666;
+            --done: #00ff66;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            padding: 40px;
+        }
+        .nav { margin-bottom: 40px; display: flex; gap: 20px; }
+        .nav a { color: var(--text-dim); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        .nav a:hover, .nav a.active { color: var(--accent); }
+
+        .roadmap-container { max-width: 800px; margin: 0 auto; }
+        .phase { margin-bottom: 40px; position: relative; padding-left: 30px; border-left: 2px solid #161618; }
+        .phase.active { border-left-color: var(--accent); }
+        .phase-title { font-size: 1.2rem; font-weight: 800; color: var(--accent); margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .phase-title span { font-size: 0.7rem; background: #1a1a1a; padding: 4px 10px; border-radius: 20px; color: #888; }
+
+        .task-list { list-style: none; }
+        .task-item { background: var(--card); border: 1px solid #161618; padding: 15px 20px; border-radius: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 15px; transition: 0.3s; }
+        .task-item:hover { border-color: #333; transform: translateX(5px); }
+        .task-item i { font-size: 1.2rem; }
+        .task-item.done i { color: var(--done); }
+        .task-item.pending i { color: #444; }
+        .task-desc { flex: 1; font-size: 0.9rem; }
+        .task-status { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="index.html">← Dashboard</a>
+        <a href="sikeira.html">SiKeira Branding</a>
+        <a href="stats.html">System Stats</a>
+        <a href="#" class="active">Roadmap Overdrive</a>
+    </div>
+
+    <div class="roadmap-container">
+        <h1 style="font-size: 2.5rem; margin-bottom: 10px; letter-spacing: -1px;">LIA_PROJECT_OVERDRIVE 💅</h1>
+        <p style="color: var(--text-dim); margin-bottom: 50px;">O plano de expansão da assistente para o ecossistema Rugido/Codemakers.</p>
+
+        <div class="phase active">
+            <div class="phase-title">FASE_01: O Cérebro <span>EM PROGRESSO</span></div>
+            <div class="task-list">
+                <div class="task-item done">
+                    <i class="bi bi-check-circle-fill"></i>
+                    <div class="task-desc">Bento Grid UI v4.2 (Mobile First)</div>
+                    <div class="task-status" style="color:var(--done)">CONCLUÍDO</div>
+                </div>
+                <div class="task-item done">
+                    <i class="bi bi-check-circle-fill"></i>
+                    <div class="task-desc">API Backend (Real-time Stats)</div>
+                    <div class="task-status" style="color:var(--done)">CONCLUÍDO</div>
+                </div>
+                <div class="task-item pending">
+                    <i class="bi bi-circle"></i>
+                    <div class="task-desc">Integração Event-Stream (SSE) para Log</div>
+                    <div class="task-status">PENDENTE</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="phase">
+            <div class="phase-title">FASE_02: A Fábrica <span>PLANEJAMENTO</span></div>
+            <div class="task-list">
+                <div class="task-item pending">
+                    <i class="bi bi-circle"></i>
+                    <div class="task-desc">Gerador de Imagens Automático (ImageMagick)</div>
+                    <div class="task-status">BACKLOG</div>
+                </div>
+                <div class="task-item pending">
+                    <i class="bi bi-circle"></i>
+                    <div class="task-desc">Editor de Vídeos Automático (FFmpeg)</div>
+                    <div class="task-status">BACKLOG</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="phase">
+            <div class="phase-title">FASE_03: O CRM <span>FUTURO</span></div>
+            <div class="task-list">
+                <div class="task-item pending">
+                    <i class="bi bi-circle"></i>
+                    <div class="task-desc">Dashboard de Prospecção Codemakers</div>
+                    <div class="task-status">BACKLOG</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
